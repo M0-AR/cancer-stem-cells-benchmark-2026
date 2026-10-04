@@ -1,0 +1,13 @@
+{
+  "gdc": {
+    "ok": true,
+    "TCGA-PAAD": 185,
+    "TCGA-BRCA": 1098
+  },
+  "openalex": {
+    "ok": true,
+    "count_2025_plus": 203440,
+    "count_sc_2024_plus": 234855
+  },
+  "live_ok": true
+}

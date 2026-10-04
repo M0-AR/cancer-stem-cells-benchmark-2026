@@ -1,0 +1,13 @@
+services:
+  csc-bench:
+    build: .
+    volumes:
+      - ./results:/work/results
+      - ./data:/work/data
+    command: ["python", "experiments/run_benchmark.py"]
+  csc-docs:
+    image: python:3.11-slim
+    working_dir: /work
+    volumes:
+      - .:/work
+    command: ["python", "-c", "print('docs service: README is the paper')"]

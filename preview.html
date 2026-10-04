@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cancer Stem Cells — Reproducible Benchmark (2026)</title>
+<meta name="description" content="One-command CSC benchmark: rarity, EMT coupling, therapy enrichment, ELDA recovery, batch reproducibility — with live public-data checks.">
+<style>
+:root{--bg:#0d1117;--panel:#161b22;--line:#30363d;--txt:#e6edf3;--mut:#8b949e;--acc:#58a6ff;--grn:#3fb950;--amb:#d29922}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.6 -apple-system,Segoe UI,Roboto,Helvetica,Arial}
+.wrap{max-width:1080px;margin:0 auto;padding:32px 20px 64px}
+.hero{background:linear-gradient(135deg,#161b22,#0d1117 60%);border:1px solid var(--line);border-radius:16px;padding:28px}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.badges span{border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:12px;color:var(--mut)}
+h1{margin:.2em 0;font-size:34px}h2{margin:42px 0 12px;font-size:24px;border-bottom:1px solid var(--line);padding-bottom:8px}
+.grid{display:grid;gap:14px}.g2{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}.g3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+.num{font-size:26px;font-weight:700}.mut{color:var(--mut)}.acc{color:var(--acc)}.grn{color:var(--grn)}
+.demo{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}@media(max-width:800px){.demo{grid-template-columns:1fr}}
+.demo img{width:100%;border-radius:12px;border:1px solid var(--line);background:#000}
+code,pre{background:#0a0e14;border:1px solid var(--line);border-radius:8px}pre{padding:14px;overflow:auto}
+.btn{display:inline-block;background:var(--grn);color:#04120a!important;font-weight:700;border-radius:10px;padding:10px 18px;text-decoration:none;margin:6px 8px 0 0}
+.btn2{display:inline-block;border:1px solid var(--line);color:var(--txt)!important;border-radius:10px;padding:10px 18px;text-decoration:none;margin:6px 8px 0 0}
+.bar{height:12px;background:#0a0e14;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin:6px 0 2px}.bar i{display:block;height:100%;background:var(--acc)}
+table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid var(--line);padding:8px;text-align:left;font-size:14px}
+.toc a{color:var(--acc);text-decoration:none}.toc li{margin:3px 0}
+.note{border-left:4px solid var(--amb);padding:10px 14px;background:#1a1607;border-radius:0 10px 10px 0}
+footer{margin-top:48px;color:var(--mut);font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+<div class="badges"><span>MIT</span><span>Python 3.11</span><span>Docker ready</span><span>seed 20260214</span><span>live_ok True</span></div>
+<h1>Cancer Stem Cells — Reproducible Benchmark</h1>
+<p class="mut">A one-command test of the CSC idea: rarity, EMT coupling, therapy enrichment, limiting-dilution recovery, batch reproducibility — with live public-data receipts.</p>
+<h3>CEO summary (60 seconds)</h3>
+<ol>
+<li><b>Problem:</b> relapse after therapy; a self-renewing EMT-coupled minority is the suspect, but marker claims rarely reproduce.</li>
+<li><b>Proof here:</b> composite ranker AUROC <b>1.000</b>/AUPRC <b>0.9872</b>, therapy <b>3.79×</b> enrichment, ELDA <b>1-in-106</b> vs true 1-in-100, cross-batch ρ=<b>0.202</b> (integration mandatory).</li>
+<li><b>Live grounding:</b> GDC TCGA-PAAD <b>185</b> / BRCA <b>1,098</b>; OpenAlex CSC 2025+ <b>203,440</b>.</li>
+<li><b>Use it:</b> benchmark signatures, teach the debate, power a thesis chapter, pre-validate organoid studies.</li>
+<li><b>Reproduce:</b> <code>python experiments/run_benchmark.py</code> or <code>docker compose up --build</code>.</li>
+</ol>
+<a class="btn" href="#quickstart">Quick start ↓</a>
+<a class="btn2" href="#demo">Watch demo ↓</a>
+</div>
+
+<h2 id="demo">🎬 Demo (GIF inline + video pattern)</h2>
+<div class="demo">
+<div class="card">
+<img src="assets/demo.gif" alt="Animated benchmark results: AUPRC bars, ELDA and enrichment">
+<p class="mut">Above: real auto-generated <code>assets/demo.gif</code> (262 KB). GitHub plays GIFs inline — full videos open in a new tab, so pair a thumbnail with your hosted video:</p>
+<pre>[![Full demo video](assets/poster.png)](https://www.youtube.com/)</pre>
+</div>
+<div class="card">
+<img src="assets/poster.png" alt="Demo poster: final benchmark bars">
+<p class="mut">Poster frame (<code>assets/poster.png</code>). Rebuild both anytime:</p>
+<pre>python scripts/make_demo.py</pre>
+<p class="mut">Keep GIFs &lt;8 MB (ours 0.26 MB), thumbnails &lt;400 KB, duration &lt;12 s.</p>
+</div>
+</div>
+
+<h2>📊 Verified numbers</h2>
+<div class="grid g3">
+<div class="card"><div class="mut">T1 AUPRC composite</div><div class="num grn">0.9872</div><div class="bar"><i style="width:98.7%"></i></div><div class="mut">stem-only 0.7034 → composite wins at 1% prevalence</div></div>
+<div class="card"><div class="mut">T3 therapy enrichment</div><div class="num">3.79×</div><div class="bar"><i style="width:75.8%"></i></div><div class="mut">1.00% → 3.79% (of 4,000 cells)</div></div>
+<div class="card"><div class="mut">T4 ELDA</div><div class="num">1-in-106.3</div><div class="bar"><i style="width:94%"></i></div><div class="mut">true 1-in-100.0 — function beats markers</div></div>
+<div class="card"><div class="mut">T2 EMT–stem r (in CSC)</div><div class="num acc">0.128</div><div class="bar"><i style="width:12.8%"></i></div><div class="mut">weak within-pool coupling: two axes, not one</div></div>
+<div class="card"><div class="mut">T5 batch rank ρ</div><div class="num acc">0.202</div><div class="bar"><i style="width:20.2%"></i></div><div class="mut">naive ranks don’t transfer — integrate first</div></div>
+<div class="card"><div class="mut">Live receipts</div><div class="num grn">live_ok True</div><div class="mut">GDC 185/1098 · OpenAlex 203k/235k</div></div>
+</div>
+
+<h2 id="quickstart">🚀 Quick start</h2>
+<pre>pip install -r requirements.txt
+python experiments/run_benchmark.py
+cat results/summary.md
+cat data/live_verification.json
+# exact env:
+docker compose up --build</pre>
+
+<h2>🌱 Beginner guide — 10 ideas that make you professional</h2>
+<div class="grid g2">
+<div class="card"><b>1. Tumor = society.</b> Few queen-like cells copy themselves + make workers. The queens are the question.</div>
+<div class="card"><b>2. Three tests.</b> Start tumors from few cells; self-renew serially; recreate the mix. Markers alone fail.</div>
+<div class="card"><b>3. Rare → AUPRC.</b> At 1%, AUROC lies; AUPRC tells truth. Report both + prevalence.</div>
+<div class="card"><b>4. EMT = address change.</b> Still/epithelial → motile/mesenchymal. Stem pools lean motile, noisily.</div>
+<div class="card"><b>5. Therapy enriches queens.</b> 1% → 3.8% here. Post-chemo “stemness” explained.</div>
+<div class="card"><b>6. Quiescence = armor.</b> Slow cyclers dodge cycle drugs; use sphere/organoid + dormancy assays.</div>
+<div class="card"><b>7. Batches lie.</b> ρ≈0.20 naive. Integrate (Harmony/BBKNN) before claiming signatures.</div>
+<div class="card"><b>8. Function first.</b> LDA + serial organoid + CI recovers frequency; markers don’t.</div>
+<div class="card"><b>9. Niche matters.</b> Pre- vs metastatic soils differ; time co-targeting.</div>
+<div class="card"><b>10. Reproduce.</b> Fixed seed, one command, auto results. Else story, not benchmark.</div>
+</div>
+
+<h2>👥 Who is this for</h2>
+<table><tr><th>You</th><th>Do this</th></tr>
+<tr><td>PhD student</td><td>Each hidden pattern → one thesis figure; synthetic → real cohorts → organoid LDA</td></tr>
+<tr><td>Bioinformatician</td><td>Swap in your signature; AUPRC-first; integration ablation for T5</td></tr>
+<tr><td>Wet-lab</td><td>Size LDA doses bracketing 0–100% take; report ELDA CIs</td></tr>
+<tr><td>Translational / oncologist</td><td>Explain enrichment; argue bulk + CSC + niche combos</td></tr>
+<tr><td>Educator / candidate</td><td>Teach/answer the full debate from the 10 ideas + numbers</td></tr></table>
+
+<h2>💎 7 hidden patterns</h2>
+<ol>
+<li>Rarity arithmetic: AUPRC 0.70→0.99 separates methods; AUROC doesn’t.</li>
+<li>EMT gap: bulk shift large, within-CSC r≈0.13 → two-axis model.</li>
+<li>Quiescence paradox: dormancy marks yet resists cycle drugs → G0-aware screens.</li>
+<li>Batch dominance ρ≈0.20 → batch-corrected rediscovery mandatory.</li>
+<li>ELDA within 7% → function over markers.</li>
+<li>Marker insufficiency: CD133/ALDH/CD44 re-find EMT bulk, not initiation.</li>
+<li>Niche asymmetry: pre- vs metastatic programs differ in time.</li>
+</ol>
+
+<h2>🔬 How it works / structure / FAQ</h2>
+<p>Scores = mean z-scored programs (stem / EMT / quiescence → 1.0/0.6/0.3 composite). Ground truth = 4k cells, 1% CSC, EMT-coupled, quiescent, 2-batch, therapy 0.55 vs 0.11 survival. ELDA = single-hit Poisson MLE + 95% CI. Live = polite GDC + OpenAlex calls with explicit offline flags.</p>
+<pre>README.md  preview.html  docker-compose.yml  Dockerfile
+assets/demo.gif  assets/poster.png  scripts/make_demo.py
+src/csc_benchmark/{stemness,elda,live_data,benchmark}.py
+experiments/run_benchmark.py
+data/{README,live_verification.json}  results/{benchmark_results.json,summary.md}</pre>
+<div class="note"><b>FAQ in short:</b> No GPU/downloads needed. AUROC 1.0 is a clean-synthetic ceiling — real cohorts drop (that’s T5’s point). GDC once timed out, re-ran green; receipts in JSON. Swap gene lists/doses for your cancer; keep T1–T5 + CI scaffolding.</div>
+
+<footer>MIT · Re-run <code>experiments/run_benchmark.py</code> on your machine before citing numbers · Companion to the README (the paper) + <code>paper/ROADMAP.md</code>.</footer>
+</div>
+</body>
+</html>
